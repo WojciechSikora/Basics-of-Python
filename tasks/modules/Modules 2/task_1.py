@@ -52,7 +52,7 @@ def display_inventory(inventory):
 
 
 def add_to_inventory(inventory, added_items):
-    """Use this function to add items to hero's inventory.
+    """Add items to hero's inventory.
 
     This function:
     - adds to inventory valuable items
