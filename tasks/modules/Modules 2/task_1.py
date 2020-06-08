@@ -17,7 +17,7 @@ dragon_loot_list = [
 
 
 def should_skip_item(item):
-    """Check if item is useable for hero's needs."""
+    """Check if item is unusable for hero's needs."""
     if item in RUBBISH:
         return True
     return False
@@ -63,7 +63,7 @@ def add_to_inventory(inventory, added_items):
 
     for item in added_items:
         item_not_useable = should_skip_item(item)
-        if item_not_useable is True:
+        if item_not_useable:
             skipped[item] += 1
         elif item in inventory:
             inventory[item] += 1
