@@ -17,8 +17,7 @@ dragon_loot_list = [
 
 
 def should_skip_item(item):
-    """Check if item is useable for hero's needs"""
-
+    """Check if item is useable for hero's needs."""
     if item in RUBBISH:
         return True
     return False
