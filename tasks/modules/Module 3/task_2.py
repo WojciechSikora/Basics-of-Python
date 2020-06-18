@@ -6,10 +6,10 @@ def my_split(string, separator):
     start_index = 0
     end_index = 0
     list_from_string = []
-    if isinstance(string, str) is False:
-        return "Argument is not a string"
-    if isinstance(separator, str) is False:
-        return "Separator is not a string"
+    if not isinstance(string, str):
+        raise TypeError("Argument is not a string")
+    if not isinstance(separator, str):
+        raise TypeError("Separator is not a string")
     while string.find(separator) != -1:
         end_index = string.index(separator)
         list_from_string.append(string[start_index:end_index])

@@ -2,7 +2,7 @@
 
 from pyinputplus import inputMenu, inputYesNo, inputInt
 
-# Program's constants
+# Constants mapping type of product to its price
 INGREDIENTS_INFORMATIONS = [
     ['bread', 'mandatory', {'wheat': 1.5, 'white': 1.0, 'sourdough': 2.0}],
     ['proteine', 'mandatory', {'chicken': 2.0, 'turkey': 3.0, 'ham': 1.5, 'tofu': 2.0}],
@@ -10,11 +10,13 @@ INGREDIENTS_INFORMATIONS = [
     ['sauce', 'optional', {'mayo': 0.5, 'mustard': 0.75, 'lettuce': 1.0, 'tomato': 1.25}]]
 
 
-def sandwich_preparation():
+def prepare_sandwich():
     """Get ingredients from user and calculate price."""
     total_price = 0
     order = []
-    print("Hello Hungry Stranger!\nPlease choose ingredients for your sandwich\n")
+    print(
+        "Hello Hungry Stranger!\n"
+        "Please choose ingredients for your sandwich\n")
     for item in range(len(INGREDIENTS_INFORMATIONS)):
         ingredient_type = INGREDIENTS_INFORMATIONS[item][0]
         ingredients_list = INGREDIENTS_INFORMATIONS[item][2]
@@ -32,11 +34,12 @@ def sandwich_preparation():
     number_of_sandwiches = inputInt(
         "How many sandwiches would you like?  ", min=1)
     print(
-        f"Great choice!\nYou have ordered: {number_of_sandwiches} sandwich(es)\n"
-        "Your sandwich(es) will consist of: ")
+        f"Great choice!\nYou have ordered: {number_of_sandwiches} "
+        "sandwich(es)\nYour sandwich(es) will consist of: ")
     for i in range(len(order)):
         print(f"{order[i][1]} {order[i][0]}")
     print(f"and will cost you only: ${total_price*number_of_sandwiches}")
 
 
-sandwich_preparation()
+if __name__ == '__main__':
+    prepare_sandwich()

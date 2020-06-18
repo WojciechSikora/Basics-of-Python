@@ -21,11 +21,13 @@ class MyFirstTests(unittest.TestCase):
 
     def test_argument_not_a_string(self):
         """Check if correct msg when argument is not a string."""
-        self.assertEqual(my_split(15, " "), "Argument is not a string")
+        with self.assertRaises(TypeError):
+            my_split(15, " ")
 
     def test_separator_not_a_string(self):
         """Check if correct msg when separator is not a string."""
-        self.assertEqual(my_split("raz dwa trzy", 15), "Separator is not a string")
+        with self.assertRaises(TypeError):
+            my_split("raz dwa trzy", 15)
 
     def test_string_only_containing_separator(self):
         """Check if splits correctly when string contains only separators."""
@@ -35,6 +37,36 @@ class MyFirstTests(unittest.TestCase):
         """Check if splits correctly when string and separator are 2 different words."""
         self.assertEqual(my_split("Python", 'Javascript'), ["Python"])
 
+#Checking results of my_split() againt split()
+    def test_compare_split_normal(self):
+        """Check if splits correctly when one character as separator."""
+        string = "raz dwa trzy"
+        separator = " "
+        self.assertEqual(my_split(string, separator), string.split(separator))
+
+    def test_compare_split_no_separator(self):
+        """Check if splits correctly when no separator in string."""
+        string = "razdwatrzy"
+        separator = " "
+        self.assertEqual(my_split(string, separator), string.split(separator))
+
+    def test_compare_split_more_separators(self):
+        """Check if splits correctly when more than one separator between characters."""
+        string = "raz   dwa   trzy"
+        separator = " "
+        self.assertEqual(my_split(string, separator), string.split(separator))
+
+    def test_compare_split_string_only_containing_separator(self):
+        """Check if splits correctly when string contains only separators."""
+        string = ",,,,"
+        separator = ","
+        self.assertEqual(my_split(string, separator), string.split(separator))
+
+    def test_compare_split_two_words(self):
+        """Check if splits correctly when string and separator are 2 different words."""
+        string = "Python"
+        separator = "Javascript"
+        self.assertEqual(my_split(string, separator), string.split(separator))
 
 if __name__ == '__main__':
     unittest.main()
