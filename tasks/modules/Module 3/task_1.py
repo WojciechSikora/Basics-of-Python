@@ -10,27 +10,26 @@ class Ingredient:
     """Dataclass to match product name with it's price and types."""
 
     name: str
-    choices: Dict
+    choices: Dict[str, float]
     required: bool = False
 
 
 # Constants mapping type of product to its price
-BREAD = Ingredient(
-    name='bread',
-    choices={'wheat bread': 1.5, 'white bread': 1.0, 'sourdough bread': 2.0},
-    required=True)
-PROTEINE = Ingredient(
-    name='proteine',
-    choices={'chicken': 2.0, 'turkey': 3.0, 'ham': 1.5, 'tofu': 2.0},
-    required=True)
-CHEESE = Ingredient(
-    name='cheese',
-    choices={'cheddar cheese': 2.5, 'Swiss cheese': 3.0, 'mozzarella cheese': 2.75})
-SAUCE = Ingredient(
-    name='sauce',
-    choices={'mayo': 0.5, 'mustard': 0.75, 'lettuce sauce': 1.0, 'tomato sauce': 1.25})
-
-INGREDIENTS_INFORMATIONS = [BREAD, PROTEINE, CHEESE, SAUCE]
+INGREDIENTS_INFORMATIONS = [
+    Ingredient(
+        name='bread',
+        choices={'wheat bread': 1.5, 'white bread': 1.0, 'sourdough bread': 2.0},
+        required=True),
+    Ingredient(
+        name='proteine',
+        choices={'chicken': 2.0, 'turkey': 3.0, 'ham': 1.5, 'tofu': 2.0},
+        required=True),
+    Ingredient(
+        name='cheese',
+        choices={'cheddar cheese': 2.5, 'Swiss cheese': 3.0, 'mozzarella cheese': 2.75}),
+    Ingredient(
+        name='sauce',
+        choices={'mayo': 0.5, 'mustard': 0.75, 'lettuce sauce': 1.0, 'tomato sauce': 1.25})]
 
 
 def prepare_sandwich():
