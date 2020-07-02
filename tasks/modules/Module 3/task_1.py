@@ -1,39 +1,36 @@
 """Module gathers input from user and prints sandwich ingredients and price."""
 
+from dataclasses import dataclass
+from typing import Dict
 from pyinputplus import inputMenu, inputYesNo, inputInt
 
+
+@dataclass
+class Ingredient:
+    """Dataclass to match product name with it's price and types."""
+
+    name: str
+    choices: Dict
+    required: bool = False
+
+
 # Constants mapping type of product to its price
-INGREDIENTS_INFORMATIONS = [
-    [
-        'bread',
-        'mandatory',
-        {
-            'wheat bread': 1.5,
-            'white bread': 1.0,
-            'sourdough bread': 2.0}],
-    [
-        'proteine',
-        'mandatory',
-        {
-            'chicken': 2.0,
-            'turkey': 3.0,
-            'ham': 1.5,
-            'tofu': 2.0}],
-    [
-        'cheese',
-        'optional',
-        {
-            'cheddar cheese': 2.5,
-            'Swiss cheese': 3.0,
-            'mozzarella cheese': 2.75}],
-    [
-        'sauce',
-        'optional',
-        {
-            'mayo': 0.5,
-            'mustard': 0.75,
-            'lettuce sauce': 1.0,
-            'tomato sauce': 1.25}]]
+BREAD = Ingredient(
+    name='bread',
+    choices={'wheat bread': 1.5, 'white bread': 1.0, 'sourdough bread': 2.0},
+    required=True)
+PROTEINE = Ingredient(
+    name='proteine',
+    choices={'chicken': 2.0, 'turkey': 3.0, 'ham': 1.5, 'tofu': 2.0},
+    required=True)
+CHEESE = Ingredient(
+    name='cheese',
+    choices={'cheddar cheese': 2.5, 'Swiss cheese': 3.0, 'mozzarella cheese': 2.75})
+SAUCE = Ingredient(
+    name='sauce',
+    choices={'mayo': 0.5, 'mustard': 0.75, 'lettuce sauce': 1.0, 'tomato sauce': 1.25})
+
+INGREDIENTS_INFORMATIONS = [BREAD, PROTEINE, CHEESE, SAUCE]
 
 
 def prepare_sandwich():
@@ -43,24 +40,21 @@ def prepare_sandwich():
         "Hello Hungry Stranger!\n"
         "Please choose ingredients for your sandwich\n")
     for item in INGREDIENTS_INFORMATIONS:
-        ingredients_list = item[2]
-        if item[1] == 'optional':
-            add_ing = inputYesNo(f"Would you like to add {item[0]}?  ")
-            if add_ing == 'yes':
-                ingredient_item = inputMenu([*ingredients_list])
-                order.update({ingredient_item: item[2][ingredient_item]})
-            else:
-                ingredient_item = "no"
+        if item.required:
+            ingredient_item = inputMenu(list(item.choices.keys()))
+            order[ingredient_item] = item.choices[ingredient_item]
         else:
-            ingredient_item = inputMenu([*ingredients_list])
-            order.update({ingredient_item: item[2][ingredient_item]})
+            add_ing = inputYesNo(f"Would you like to add {item.name}?  ")
+            if add_ing == 'yes':
+                ingredient_item = inputMenu(list(item.choices.keys()))
+                order[ingredient_item] = item.choices[ingredient_item]
     number_of_sandwiches = inputInt(
         "How many sandwiches would you like?  ", min=1)
     print(
         "Great choice! \n"
         f"You have ordered: {number_of_sandwiches} sandwich(es)\n"
         f"Your sandwich(es) will consist of:\n{list(order)}\n"
-        "and will cost you only:"
+        "and will cost you only: "
         f"${sum(order.values()) * number_of_sandwiches}")
 
 

@@ -11,7 +11,7 @@ class MyFirstTests(unittest.TestCase):
         """Check result when one character as separator."""
         self.assertEqual(my_split("raz dwa trzy", " "), ["raz", "dwa", "trzy"])
 
-    def test_no_separator(self):
+    def test_no_separator_in_string(self):
         """Check result when no separator in string."""
         self.assertEqual(my_split("razdwatrzy", " "), ["razdwatrzy"])
 
@@ -34,10 +34,6 @@ class MyFirstTests(unittest.TestCase):
     def test_string_only_containing_separator(self):
         """Check result when string contains only separators."""
         self.assertEqual(my_split(",,,,", ','), ['', '', '', '', ''])
-
-    def test_two_words(self):
-        """Check result when string and separator are 2 different words."""
-        self.assertEqual(my_split("Python", 'Javascript'), ["Python"])
 
     def test_separator_not_provided(self):
         """Check result when user does not provide separator argument."""
