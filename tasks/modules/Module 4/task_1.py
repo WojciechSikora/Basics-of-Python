@@ -29,10 +29,8 @@ def mad_libs(file_path, list_of_patterns):
                 pattern, replacement, text_file_content, count=1)
             search_result = search(pattern, text_file_content)
     print(text_file_content)
-    new_text_file = open(
-        fr'{path_to_rw_files.absolute().parent}/{path_to_rw_files.stem}__CHANGED.txt', 'w')
-    new_text_file.write(text_file_content)
-    new_text_file.close()
+    with open(fr'{path_to_rw_files.absolute().parent}/{path_to_rw_files.stem}__CHANGED.txt', 'w') as new_text_file:
+        new_text_file.write(text_file_content)
 
 
 if __name__ == '__main__':
