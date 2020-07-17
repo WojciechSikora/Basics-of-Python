@@ -19,7 +19,7 @@ def fill_the_gaps(prefix, file_type="txt"):
     for file in files_in_folder:
         file_index = int(search(r'\d+', file.stem).group())
         if file_index != sorting_number:
-            changed_name_path = data_folder / f"{prefix}{sorting_number:0{number_len}d}.txt"
+            changed_name_path = data_folder / f"{prefix}{sorting_number:0{number_len}d}.{file_type}"
             shutil.move(file, changed_name_path)
         sorting_number += 1
     return sorted(data_folder.rglob(f'{prefix}*.{file_type}'))
