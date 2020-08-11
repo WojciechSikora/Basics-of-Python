@@ -13,7 +13,8 @@ def fill_the_gaps(prefix, file_type="txt"):
     data_folder = Path(path_to_folder)
     files_in_folder = sorted(data_folder.rglob(f'{prefix}*.{file_type}'))
     if not files_in_folder:
-        return "No files with given prefix and/or type in chosen folder"
+        print("No files with given prefix and/or type in chosen folder")
+        return
     number_len = len(search(r'\d+', files_in_folder[0].stem).group())
     sorting_number = int(search(r'\d+', files_in_folder[0].stem).group())
     for file in files_in_folder:
@@ -22,8 +23,6 @@ def fill_the_gaps(prefix, file_type="txt"):
             changed_name_path = data_folder / f"{prefix}{sorting_number:0{number_len}d}.{file_type}"
             shutil.move(file, changed_name_path)
         sorting_number += 1
-    return sorted(data_folder.rglob(f'{prefix}*.{file_type}'))
-
 
 if __name__ == '__main__':
     fill_the_gaps("spam")
