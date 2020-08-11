@@ -1,6 +1,11 @@
 #Instructions for course
 instructions_and_materials/
 
+#ezsheets config files
+tasks/modules/Module 4/credentials-sheets.json
+tasks/modules/Module 4/token-drive.pickle
+tasks/modules/Module 4/token-sheets.pickle
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
