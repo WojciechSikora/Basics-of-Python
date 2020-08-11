@@ -24,5 +24,6 @@ def fill_the_gaps(prefix, file_type="txt"):
             shutil.move(file, changed_name_path)
         sorting_number += 1
 
+
 if __name__ == '__main__':
     fill_the_gaps("spam")
