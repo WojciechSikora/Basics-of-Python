@@ -104,7 +104,7 @@ class Inventory:
         for item_name, item_count in skipped.items():
             print(f"{item_count} {item_name}")
 
-        return inventory
+        return self.inventory
 
 
 if __name__ == '__main__':
